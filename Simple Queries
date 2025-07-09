@@ -1,0 +1,62 @@
+-- Basic commands, simple queries
+-- We have simple table of customer information
+
+-- Customers (id, name, email)
+
+SELECT * FROM Customers;
+
+-- Returns all columns from the table
+
+SELECT id FROM Customers;
+
+-- Returns the id column from the table
+
+SELECT * FROM Customers
+WHERE name = ‘Jane Doe’;
+
+-- Returns the entire row where the name value is Jane Doe
+
+SELECT id FROM Customers
+WHERE name = ‘John Doe’;
+
+-- Returns the id of John Doe
+
+INSERT INTO Customers (id, name, email)
+VALUES (‘John Smith’,’john.smith@hotmail.cöm’);
+
+-- Inserts a name and email value into the table
+
+UPDATE Customers
+SET email = ‘jane.smith@hotmail.cöm’
+WHERE name = ‘Jane Smith’;
+
+-- Changes the email of Jane Smith
+
+DELETE FROM Customers
+WHERE name = ‘Jhon Jhonson’;
+
+-- Removes the row with the name Jhon Jhonson
+
+-- Let’s add another table to the mix
+
+-- Orders (id, customer_id, item_id, price)
+
+SELECT id FROM Orders
+WHERE price > 50000;
+
+-- Returns the id’s of orders, where the price is higher than 50000
+
+SELECT COUNT(*) FROM Orders;
+
+-- Returns the number of rows in the Orders table
+
+SELECT item_id, AVG(price) AS avg_price
+FROM Orders
+GROUP BY item_id
+
+-- Calculates the average price by item id, and groups by item_id
+
+SELECT id, price FROM Orders
+ORDER BY price DESC;
+
+-- Lists the order id and price of orders, sorted by price descending
