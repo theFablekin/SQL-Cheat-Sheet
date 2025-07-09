@@ -1,0 +1,20 @@
+-- Complex queries using multiple tables
+
+-- We have 2 tables we want to make queries for
+-- Customers (id, name, email)
+-- Orders (id, customer_id, item_id, price)
+
+SELECT c.name
+FROM (
+	SELECT customer_id, AVG(price) AS avg_price 
+	FROM Orders
+	GROUP BY customer_id
+) AS cust_avg
+JOIN Customers c ON cust_avg.customer_id = c.id
+WHERE cust_avg.avg_price = (
+	SELECT MAX(AVG(price))
+	FROM Orders
+	GROUP BY customer_id
+);
+
+-- Returns the name of the customer with the highest average order price
